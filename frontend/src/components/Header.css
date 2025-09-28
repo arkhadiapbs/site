@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  background: transparent;
+  position: absolute; /* fica por cima do degradê */
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+
+.logo-container {
+  display: flex;
+  flex-direction: column; /* logo em cima, nome embaixo */
+  align-items: center;
+}
+
+.logo {
+  width: 150px; /* ajusta o tamanho */
+  height: auto;
+  margin-bottom: 5px;
+}
+
+nav {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente */
+  gap: 50px;
+}
+
+nav a {
+  text-decoration: none;
+  /*margin-left: 100px;*/
+  color: #fff;
+  font-weight: 600;
+  font-size: 25px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #6352ff; /* cor de destaque (pode trocar) */
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: #6352ff; /* muda a cor no hover */
+}
+
+nav a:hover::after {
+  width: 100%; /* cria a barrinha animada embaixo */
+}

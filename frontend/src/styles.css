@@ -1,0 +1,271 @@
+:root {
+  --branco:#FFFFFF;
+  --azulceuclaro:#D2F7FF;
+  --azulceu:#9EECFF;
+  --azulqclaro:#69E2FF;
+  --azulclaro:#35D7FF;
+  --azu:#00CCFF;
+  --azulescuro: #0d1b2a;
+  --preto:#000000;
+}
+
+/* == RESET E BASE == */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: --azulescuro;
+  color: #e0e1dd;
+  font-family: 'Orbitron', sans-serif;
+  line-height: 1.6;
+}
+
+/* === HEADER COM BANNER ENCAIXADO === */
+header {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #1b263b;
+  padding: 40px 20px;
+  text-align: center;
+  
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+header h2 {
+  color: #fff;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  margin-top: 10px;
+}
+
+/* === MAIN === */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #90e0ef;
+}
+
+h2 {
+  color: #00b4d8;
+  margin-top: 40px;
+  font-size: 1.8rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+ul li {
+  background: #1b263b;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border-left: 4px solid #00b4d8;
+  text-align: left;
+}
+
+/* === BOTÕES === */
+button {
+  background: linear-gradient(45deg, #00b4d8, #90e0ef);
+  border: none;
+  color: #0d1b2a;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #90e0ef;
+}
+
+/* === MODAL === */
+#votacaoModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 27, 42, 0.9);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#votacaoModal > div {
+  background: #1b263b;
+  padding: 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  color: #e0e1dd;
+  box-shadow: 0 0 15px #00b4d8;
+}
+
+#votacaoModal h3 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  color: #00b4d8;
+}
+
+#votacaoModal textarea {
+  resize: vertical;
+  min-height: 80px;
+  background-color: #0d1b2a;
+  color: #e0e1dd;
+  border: 1px solid #00b4d8;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* === FOOTER === */
+footer {
+  background: #1b263b;
+  padding: 15px;
+  text-align: center;
+  color: #ccc;
+  font-size: 0.9rem;
+  border-top: 2px solid #00b4d8;
+  margin-top: 60px;
+}
+
+/* === BANNER E INTRODUÇÃO === */
+header.banner {
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 2px 2px 5px #000;
+}
+
+header.banner h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+header.banner nav a {
+  margin: 0 10px;
+  color: #00b4d8;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+.intro-text {
+  max-width: 400px;
+}
+
+.intro-img img {
+  max-width: 300px;
+  border-radius: 10px;
+}
+/* === HEADER COM BANNER COM TRANSIÇÃO DEGRADE SUAVE === */
+header.banner {
+  padding: 60px 20px 100px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: none;
+  position: relative;
+}
+
+/* === INTRODUÇÃO (SEM IMAGEM) === */
+.intro {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.intro-text h2 {
+  font-size: 2.2rem;
+  color: #00b4d8;
+  margin-bottom: 10px;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === ZIGZAG SESSÕES === */
+.zigzag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 50px 20px;
+  flex-wrap: wrap;
+}
+
+.zigzag.reverse {
+  flex-direction: row-reverse;
+}
+
+.zigzag .text {
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+
+.zigzag .text h3 {
+  font-size: 1.8rem;
+  color: #90e0ef;
+  margin-bottom: 10px;
+}
+
+.zigzag .text p {
+  font-size: 1.1rem;
+}
+
+.zigzag .image {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.zigzag .image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 180, 216, 0.4);
+}

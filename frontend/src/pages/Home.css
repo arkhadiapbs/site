@@ -1,0 +1,10 @@
+.home {
+  height: 200vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Degradê radial */
+  background: radial-gradient(circle at center, #ffffff 0%, #1b2f73 35%, #0a1a3f 100%);
+
+}
