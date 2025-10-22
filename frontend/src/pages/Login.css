@@ -10,11 +10,25 @@
   overflow: hidden;
 }
 
+/* VÍDEO DE FUNDO */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cobre toda a tela sem distorcer */
+  z-index: -2; /* fica atrás de tudo */
+  filter: brightness(0.8); /* opcional: escurece levemente o vídeo */
+}
+
+/* Camada escura por cima do vídeo */
 .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(2px);
+  z-index: -1; /* fica entre o vídeo e o conteúdo */
 }
 
 /* Card principal */
@@ -143,4 +157,3 @@
     width: 100px;
   }
 }
-
