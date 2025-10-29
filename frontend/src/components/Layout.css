@@ -1,0 +1,12 @@
+/* Layout.css */
+.layout-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-container main {
+  flex: 1;
+  /* O conteúdo principal ocupa o espaço restante */
+  padding-top: 20px; /* ajuste se necessário */
+}

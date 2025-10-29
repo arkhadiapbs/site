@@ -1,6 +1,6 @@
 import React from "react";
 import videoFundo from "../assets/fundo-gamer.mp4"; 
-import "./Register.css";
+import "./Login.css";
 
 export default function Login() {
   return (
@@ -36,7 +36,7 @@ export default function Login() {
             <input type="email" placeholder="E-mail" />
             <input type="password" placeholder="Senha" />
             <p className="login-text">
-              <a href="#">Crie uma conta</a> para acesso completo, ou entre como{" "}
+              <a href="/Register">Crie uma conta</a> para acesso completo, ou entre como{" "}
               <a href="#">visitante</a>.
             </p>
             <button type="submit">AVANÇAR</button>
