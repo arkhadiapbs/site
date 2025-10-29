@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import das páginas
@@ -12,50 +12,59 @@ import Register from "./pages/Register";
 // Import do Layout (Header + Footer)
 import Layout from "./components/Layout";
 
-import './styles.css';
+import "./styles.css";
 
 function App() {
+  const [mensagem, setMensagem] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/mensagem")
+      .then((res) => res.json())
+      .then((data) => setMensagem(data.texto))
+      .catch((err) => console.error("Erro ao buscar API:", err));
+  }, []);
+
   return (
     <Router>
       <Routes>
         {/* 🔹 Páginas COM Header e Footer (usam Layout) */}
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
             <Layout>
-              <Home />
+              <Home mensagem={mensagem} /> {/* Passa a mensagem pro Home */}
             </Layout>
-          } 
+          }
         />
-        
-        <Route 
-          path="/jogos" 
+
+        <Route
+          path="/jogos"
           element={
             <Layout>
               <Jogos />
             </Layout>
-          } 
+          }
         />
-        
-        <Route 
-          path="/marketplace" 
+
+        <Route
+          path="/marketplace"
           element={
             <Layout>
               <Marketplace />
             </Layout>
-          } 
+          }
         />
-        
-        <Route 
-          path="/comunidade" 
+
+        <Route
+          path="/comunidade"
           element={
             <Layout>
               <Comunidade />
             </Layout>
-          } 
+          }
         />
-        
-        {/* 🔹 Páginas SEM Header e Footer (não usam Layout) */}
+
+        {/* 🔹 Páginas SEM Header e Footer */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

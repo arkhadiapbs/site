@@ -3,8 +3,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const jogos = require("./routes/jogos");
-const Marketplace = require("./routes/Marketplace");
-const Comunidade = require("./routes/Comunidade");
 const auth = require("./routes/auth");
 
 const app = express();
@@ -24,8 +22,6 @@ mongoose.connect("mongodb+srv://arkhadia168_db_user:safu54e0ahDeMh02@arkhadia.tc
 
 // Rotas da API
 app.use("/api/jogos", jogos);
-app.use("/api/marketplace", Marketplace);
-app.use("/api/comunidade", Comunidade);
 app.use("/api/auth", auth);
 
 // Página 404 (agora só em JSON)
