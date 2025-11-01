@@ -2,43 +2,77 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 20px 40px;
   color: white;
   background: transparent;
-  position: absolute; /* fica por cima do degradê */
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
+  transition: all 0.4s ease;
+  z-index: 1000;
 }
 
+/* === HEADER APÓS ROLAR === */
+.header.scrolled {
+  background: rgba(27, 38, 59, 0.95);
+  backdrop-filter: blur(5px);
+  padding: 10px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
 
 .logo-container {
   display: flex;
-  flex-direction: column; /* logo em cima, nome embaixo */
+  flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Quando rolar, logo vai para a esquerda */
+.header.scrolled .logo-container {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo {
-  width: 150px; /* ajusta o tamanho */
+  width: 150px;
   height: auto;
   margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+/* diminui a logo quando rolar */
+.header.scrolled .logo {
+  width: 100px;
+  margin-bottom: 0; /* remove margin quando vira linha */
 }
 
 nav {
   display: flex;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: center;     /* centraliza verticalmente */
+  justify-content: center;
+  align-items: center;
   gap: 50px;
+  transition: all 0.3s ease;
+}
+
+/* Quando rolar, nav vai para a direita */
+.header.scrolled nav {
+  justify-content: flex-end;
+  gap: 30px;
 }
 
 nav a {
   text-decoration: none;
-  /*margin-left: 100px;*/
   color: #fff;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 22px;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.header.scrolled nav a {
+  font-size: 20px;
 }
 
 nav a::after {
@@ -48,14 +82,39 @@ nav a::after {
   left: 0;
   width: 0;
   height: 2px;
-  background: #6352ff; /* cor de destaque (pode trocar) */
+  background: #6352ff;
   transition: width 0.3s ease;
 }
 
 nav a:hover {
-  color: #6352ff; /* muda a cor no hover */
+  color: #6352ff;
 }
 
 nav a:hover::after {
-  width: 100%; /* cria a barrinha animada embaixo */
+  width: 100%;
+}
+
+/* === TEXTO DO LOGO (se quiser adicionar) === */
+.logo-text {
+  display: none; /* escondido inicialmente */
+}
+
+.header.scrolled .logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.7rem;
+  color: #00b4d8;
+  margin: 0;
+  line-height: 1;
 }
