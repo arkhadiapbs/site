@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 
 const jogos = require("./routes/jogos");
 const auth = require("./routes/auth");
+const posts = require("./routes/posts");
+const comments = require("./routes/comments")
 
 const app = express();
 
@@ -23,6 +25,8 @@ mongoose.connect("mongodb+srv://arkhadia168_db_user:safu54e0ahDeMh02@arkhadia.tc
 // Rotas da API
 app.use("/api/jogos", jogos);
 app.use("/api/auth", auth);
+app.use("/api/posts", posts);  // <= ADICIONE ESTA LINHA
+app.use("/api/comments", comments);
 
 // Página 404 (agora só em JSON)
 app.use((req, res) => {
