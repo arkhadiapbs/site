@@ -1,0 +1,105 @@
+/* Container geral */
+.comu-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  padding-top: 150px; /* empurra o conteúdo pra baixo */
+  color: white;
+}
+
+/* Card Dark */
+.post-card,
+.create-card,
+.postPage-card,
+.comments-card {
+  background: #1d1d1d;
+  padding: 18px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 12px #00000055;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.post-card:hover {
+  transform: scale(1.01);
+  background: #222;
+}
+
+/* Criar Post */
+.create-card input,
+.create-card textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: #2c2c2c;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.create-card button {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #5b5bff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+/* Post feed */
+.post-author {
+  font-size: 0.9rem;
+  color: #bbbbbb;
+}
+
+.post-text {
+  margin-top: 6px;
+}
+
+/* Página do post */
+.postPage-container {
+  max-width: 800px;
+  margin: 20px auto;
+  color: white;
+}
+
+.postPage-author {
+  display: block;
+  margin-top: 10px;
+  color: #bbbbbb;
+}
+
+/* Comentários */
+.comment-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.comment-input input {
+  flex: 1;
+  background: #2c2c2c;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.comment-input button {
+  background: #5b5bff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.comment-item {
+  background: #2c2c2c;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}

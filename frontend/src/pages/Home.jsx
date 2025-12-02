@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
+import galaxia from "../assets/galaxia.jpg";
 
 export default function Home() {
   return (
@@ -47,7 +48,7 @@ export default function Home() {
           </p>
         </div>
         <div className="image">
-          <img src="/imagens/galaxia.jpg" alt="Galáxia gamer" />
+          <img src={galaxia} alt="Galáxia gamer" />
         </div>
       </section>
     </div>
