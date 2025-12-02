@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const jogos = require("./routes/jogos");
+const games = require("./routes/games");
 const auth = require("./routes/auth");
 const posts = require("./routes/posts");
 const comments = require("./routes/comments")
@@ -23,7 +23,7 @@ mongoose.connect("mongodb+srv://arkhadia168_db_user:safu54e0ahDeMh02@arkhadia.tc
 .catch(err => console.error("❌ Erro no MongoDB:", err));
 
 // Rotas da API
-app.use("/api/jogos", jogos);
+app.use("/api/games", games);
 app.use("/api/auth", auth);
 app.use("/api/posts", posts);  // <= ADICIONE ESTA LINHA
 app.use("/api/comments", comments);
