@@ -29,6 +29,7 @@ export default function Header() {
       </div>
       <nav>
         <a href="/">Home</a>
+        <a href="/jogos">Jogos</a>
         <a href="/comunidade">Comunidade</a>
         <a href="/marketplace">Marketplace</a>
       </nav>
