@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
+import { FaHome, FaGamepad, FaUsers, FaStore } from "react-icons/fa";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,15 +25,26 @@ export default function Header() {
         {/* Texto que aparece só quando scrolled */}
         <div className="logo-text">
           <span className="logo-title">ARKHADIA</span>
-          <span className="logo-subtitle">SEU MUNDO GAME</span>
         </div>
       </div>
       <nav>
-        <a href="/">Home</a>
-        <a href="/jogos">Jogos</a>
-        <a href="/comunidade">Comunidade</a>
-        <a href="/marketplace">Marketplace</a>
-      </nav>
+  <a href="/">
+    <FaHome /> Home
+  </a>
+
+  <a href="/jogos">
+    <FaGamepad /> Jogos
+  </a>
+
+  <a href="/comunidade">
+    <FaUsers /> Comunidade
+  </a>
+
+  <a href="/marketplace">
+    <FaStore /> Marketplace
+  </a>
+</nav>
+
     </header>
   );
 }

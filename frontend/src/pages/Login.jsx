@@ -11,17 +11,43 @@ export default function Login() {
     return regex.test(email);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+async function handleSubmit(e) {
+  e.preventDefault();
 
-    if (!validarEmail(email)) {
-      setErroEmail("Digite um e-mail válido.");
+  if (!validarEmail(email)) {
+    setErroEmail("Digite um e-mail válido.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || "Erro no login");
       return;
     }
 
-    setErroEmail("");
-    console.log("Login OK");
+    // ✅ SALVA O USUÁRIO NO LOCALSTORAGE
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    console.log("Usuário logado:", data.user);
+
+    // ✅ REDIRECIONA PRA COMUNIDADE
+    window.location.href = "/Comunidade";
+
+  } catch (error) {
+    console.error("Erro no login:", error);
+    alert("Erro ao conectar com o servidor");
   }
+}
 
   return (
     <div className="login-container">

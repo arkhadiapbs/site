@@ -11,29 +11,31 @@ dayjs.locale("pt-br");
 
 export default function Comunidade() {
   const [posts, setPosts] = useState([]);
-  const [novoTitulo, setNovoTitulo] = useState("");
   const [novoTexto, setNovoTexto] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get("/posts").then((response) => setPosts(response.data));
+    api.get("/posts/feed").then((response) => setPosts(response.data));
   }, []);
 
   async function criarPost() {
-    if (!novoTitulo.trim() || !novoTexto.trim()) return;
+    if (!novoTexto.trim()) return;
 
     const user = JSON.parse(localStorage.getItem("user"));
 
+    if (!user?._id) {
+      alert("Você precisa estar logado pra postar!");
+      return;
+    }
+
     const payload = {
-      title: novoTitulo,
-      posttext: novoTexto,
-      username: user ? user.username : "Anônimo",
+      texto: novoTexto,
+      userId: user._id,
     };
 
     try {
       const response = await api.post("/posts", payload);
       setPosts([response.data, ...posts]);
-      setNovoTitulo("");
       setNovoTexto("");
     } catch (err) {
       console.error("Erro ao criar post:", err);
@@ -46,17 +48,13 @@ export default function Comunidade() {
       {/* Criar Post */}
       <div className="create-card">
         <h2>Criar Post</h2>
-        <input
-          type="text"
-          placeholder="Título..."
-          value={novoTitulo}
-          onChange={(e) => setNovoTitulo(e.target.value)}
-        />
+
         <textarea
           placeholder="Escreva algo..."
           value={novoTexto}
           onChange={(e) => setNovoTexto(e.target.value)}
         ></textarea>
+
         <button onClick={criarPost}>Postar</button>
       </div>
 
@@ -67,11 +65,11 @@ export default function Comunidade() {
           className="post-card"
           onClick={() => navigate(`/post/${post._id}`)}
         >
-          <h3>{post.title}</h3>
           <p className="post-author">
-            @{post.username} · {dayjs(post.createdAt).fromNow()}
+            @{post.userId?.nome || "Usuário"} · {dayjs(post.createdAt).fromNow()}
           </p>
-          <p className="post-text">{post.posttext}</p>
+
+          <p className="post-text">{post.texto}</p>
         </div>
       ))}
     </div>

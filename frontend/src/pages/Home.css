@@ -67,8 +67,8 @@
   font-size: 4rem;
   font-weight: 900;
   margin-bottom: 1rem;
-  text-shadow: 0 0 20px rgba(138, 43, 226, 0.8),
-               0 0 40px rgba(138, 43, 226, 0.5);
+  text-shadow: 0 0 20px rgba(43, 46, 226, 0.8),
+               0 0 40px rgba(43, 46, 226, 0.5);
 }
 
 .intro-text h2 {
@@ -163,7 +163,7 @@
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
-  background: linear-gradient(90deg, #8a2be2, #ff1493);
+  background: linear-gradient(90deg, #1e20b8, #0a0280);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -181,13 +181,13 @@
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(138, 43, 226, 0.3);
+  box-shadow: 0 20px 60px rgba(43, 46, 226, 0.3);
   transition: all 0.4s ease;
 }
 
 .image-wrapper:hover {
   transform: scale(1.05) rotate(2deg);
-  box-shadow: 0 30px 80px rgba(138, 43, 226, 0.5);
+  box-shadow: 0 30px 80px rgba(43, 46, 226, 0.5);
 }
 
 .image-wrapper::before {
@@ -255,20 +255,20 @@
 
 @keyframes glitch {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(138, 43, 226, 0.8),
-                 0 0 40px rgba(138, 43, 226, 0.5);
+    text-shadow: 0 0 20px rgba(43, 46, 226, 0.8),
+                 0 0 40px rgba(43, 46, 226, 0.5);
   }
   25% {
     text-shadow: -2px 0 20px rgba(255, 20, 147, 0.8),
-                 2px 2px 40px rgba(138, 43, 226, 0.5);
+                 2px 2px 40px rgba(43, 46, 226, 0.5);
   }
   50% {
-    text-shadow: 2px 0 20px rgba(138, 43, 226, 0.8),
+    text-shadow: 2px 0 20px rgba(43, 46, 226, 0.8),
                  -2px -2px 40px rgba(255, 20, 147, 0.5);
   }
   75% {
     text-shadow: 0 2px 20px rgba(255, 20, 147, 0.8),
-                 0 -2px 40px rgba(138, 43, 226, 0.5);
+                 0 -2px 40px rgba(43, 46, 226, 0.5);
   }
 }
 
