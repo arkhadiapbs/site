@@ -12,6 +12,7 @@ export default function Footer() {
           border-top: 1px solid #1a1919ff;
           box-shadow: 0 -4px 10px #1b1b1b55;
           font-size: 0.95rem;
+          font-family: 'Montserrat', sans-serif;
         }
 
         .footer p {

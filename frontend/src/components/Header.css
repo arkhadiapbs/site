@@ -4,13 +4,14 @@
   align-items: center;
   padding: 20px 40px;
   color: white;
-  background: transparent;
+  background: rgba(27, 38, 59, 0.95);
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   transition: all 0.4s ease;
   z-index: 1000;
+  height: 115px;
 }
 
 /* === HEADER APÓS ROLAR === */
@@ -41,6 +42,7 @@
   height: auto;
   margin-bottom: 5px;
   transition: all 0.3s ease;
+  padding-top: 20px;
 }
 
 /* diminui a logo quando rolar */

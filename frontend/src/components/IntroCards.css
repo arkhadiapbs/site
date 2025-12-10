@@ -1,0 +1,69 @@
+.intro-cards {
+  padding: 80px 10%;
+  background: #0b0b16;
+}
+
+.intro-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title-small {
+  font-size: 2.5rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #aaa;
+  margin-right: 10px;
+  font-weight: 400;
+}
+
+.title-highlight {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(90deg, #5f7cff, #6ecaff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(60, 107, 207, 0.4);
+}
+
+.card-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: #3c6bcf;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  opacity: 0.8;
+}
