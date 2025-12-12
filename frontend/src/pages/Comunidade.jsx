@@ -15,7 +15,7 @@ export default function Comunidade() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get("/posts/feed").then((response) => setPosts(response.data));
+    api.get("/api/posts/feed").then((response) => setPosts(response.data));
   }, []);
 
   async function criarPost() {
@@ -34,7 +34,7 @@ export default function Comunidade() {
     };
 
     try {
-      const response = await api.post("/posts", payload);
+      const response = await api.post("/api/posts", payload);
       setPosts([response.data, ...posts]);
       setNovoTexto("");
     } catch (err) {
@@ -45,7 +45,6 @@ export default function Comunidade() {
   return (
     <div className="comu-container">
 
-      {/* Criar Post */}
       <div className="create-card">
         <h2>Criar Post</h2>
 
@@ -58,7 +57,6 @@ export default function Comunidade() {
         <button onClick={criarPost}>Postar</button>
       </div>
 
-      {/* Feed */}
       {posts.map((post) => (
         <div
           key={post._id}
