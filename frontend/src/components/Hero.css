@@ -51,7 +51,7 @@
 .hero-buttons button {
   display: flex;
   align-items: center;
-  gap: 10px; /* <-- espaço entre ícone e texto */
+  gap: 10px;
 }
 
 .btn-primary {

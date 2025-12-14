@@ -21,7 +21,7 @@
 body {
   background-color: var(--azulescuro);
   color: #e0e1dd;
-  font-family: 'Orbitron', sans-serif;
+  /*font-family: 'Orbitron', sans-serif;*/
   line-height: 1.6;
 }
 

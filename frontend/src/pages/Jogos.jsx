@@ -1,153 +1,118 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { FiSearch, FiFilter, FiChevronDown } from "react-icons/fi";
+import axios from "axios";
 import "./Jogos.css";
+import { useRef } from "react";
 
 export default function Jogos() {
   const [games, setGames] = useState([]);
-  const [nome, setNome] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [imagem, setImagem] = useState("");
-  const [minimo, setMinimo] = useState("");
-  const [recomendado, setRecomendado] = useState("");
+  const [search, setSearch] = useState("");
+  const [genero, setGenero] = useState("Todos");
+  const [plataforma, setPlataforma] = useState("Todas");
+  const [selectedGame, setSelectedGame] = useState(null);
+  const filtroRef = useRef(null);
 
-  // ✅ BUSCAR JOGOS
   useEffect(() => {
-    fetch("http://localhost:5000/games")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setGames(data);
-        } else if (Array.isArray(data.games)) {
-          setGames(data.games);
-        } else {
-          setGames([]);
-        }
-      })
-      .catch((err) => {
-        console.error("Erro ao buscar games:", err);
-        setGames([]);
-      });
+    axios.get("http://localhost:5000/api/games")
+      .then(res => setGames(res.data))
+      .catch(err => console.error(err));
   }, []);
 
-  // ✅ CRIAR JOGO
-  async function criarGame(e) {
-    e.preventDefault();
+  const gamesFiltrados = games.filter(game => {
+    const nomeMatch = game.nome.toLowerCase().includes(search.toLowerCase());
+    const generoMatch = genero === "Todos" || game.genero === genero;
+    const plataformaMatch = plataforma === "Todas" || game.plataforma?.includes(plataforma);
 
-    if (!nome || !descricao || !minimo || !recomendado) {
-      alert("Preenche tudo direitinho 👀");
-      return;
-    }
-
-    const novoGame = {
-      nome,
-      descricao,
-      imagem,
-      requisitos: {
-        minimo,
-        recomendado,
-      },
-    };
-
-    try {
-      const response = await fetch("http://localhost:5000/games", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(novoGame),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert("Erro ao cadastrar jogo");
-        return;
-      }
-
-      setGames((prev) => [...prev, data.game]);
-
-      setNome("");
-      setDescricao("");
-      setImagem("");
-      setMinimo("");
-      setRecomendado("");
-    } catch (err) {
-      console.error("Erro ao criar jogo:", err);
-    }
-  }
+    return nomeMatch && generoMatch && plataformaMatch;
+  });
 
   return (
-    <div className="games-container">
+    <div className="jogos-page">
 
-      <h1 className="games-title">🎮 Jogos em Destaque</h1>
+      <div className="games-container">
+       <h1 className="games-title">
+          <span className="title-small">Catálogo de</span>{" "}
+          <span className="title-highlight">Jogos</span>
+        </h1>
+      <p className="games-subtitle">
+        Descubra os melhores jogos e encontre sua próxima aventura
+      </p>
 
-      {/* ✅ FORMULÁRIO (se quiser depois a gente esconde com admin) */}
-      <form className="game-form" onSubmit={criarGame}>
-        <input
-          type="text"
-          placeholder="Nome do jogo"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
+      {/* Barra de busca + filtros */}
+      <div className="jogos-filtros">
+        <div className="search-box">
+          <FiSearch />
+          <input
+            type="text"
+            placeholder="Buscar jogo..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="URL da imagem"
-          value={imagem}
-          onChange={(e) => setImagem(e.target.value)}
-        />
+        <div
+          className="filtro"
+          onClick={() => filtroRef.current?.focus()}
+        >
+          <select ref={filtroRef}>
+            <option value="Todos">Todos os Gêneros</option>
+            <option value="RPG">RPG</option>
+            <option value="Action RPG">Action RPG</option>
+            <option value="Action-Adventure">Action-Adventure</option>
+            <option value="FPS">FPS</option>
+          </select>
+            <FiChevronDown className="filtro-icon" />
+        </div>
 
-        <textarea
-          placeholder="Descrição do jogo"
-          value={descricao}
-          onChange={(e) => setDescricao(e.target.value)}
-        ></textarea>
-
-        <input
-          type="text"
-          placeholder="Requisitos mínimos"
-          value={minimo}
-          onChange={(e) => setMinimo(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Requisitos recomendados"
-          value={recomendado}
-          onChange={(e) => setRecomendado(e.target.value)}
-        />
-
-        <button type="submit">Cadastrar Jogo</button>
-      </form>
-
-      {/* ✅ VITRINE DE JOGOS */}
-      <div className="games-grid">
-        {Array.isArray(games) && games.length > 0 ? (
-          games.map((game) => (
-            <div className="game-card" key={game._id}>
-
-              <div className="game-image">
-                {game.imagem ? (
-                  <img src={game.imagem} alt={game.nome} />
-                ) : (
-                  <div className="no-image">Sem imagem</div>
-                )}
-              </div>
-
-              <div className="game-info">
-                <h2>{game.nome}</h2>
-                <p className="game-desc">{game.descricao}</p>
-
-                <div className="game-req">
-                  <p><strong>Mínimo:</strong> {game.requisitos?.minimo}</p>
-                  <p><strong>Recomendado:</strong> {game.requisitos?.recomendado}</p>
-                </div>
-              </div>
-
-            </div>
-          ))
-        ) : (
-          <p className="no-games">Nenhum jogo cadastrado ainda 😢</p>
-        )}
+        <div className="filtro">
+          <select value={plataforma} onChange={e => setPlataforma(e.target.value)}>
+            <option value="Todas">Todas Plataformas</option>
+            <option value="PC">PC</option>
+            <option value="PS4">PS4</option>
+            <option value="PS5">PS5</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Switch">Switch</option>
+          </select>
+            <FiChevronDown className="filtro-icon" />
+        </div>
       </div>
 
+      <p className="contador">{gamesFiltrados.length} jogo(s) encontrado(s)</p>
+
+      {/* Grid de jogos */}
+      <div className="jogos-grid">
+        {gamesFiltrados.map(game => (
+          <div
+            key={game._id}
+            className="game-card"
+            onClick={() => setSelectedGame(game)}
+          >
+            <img src={game.imagem} alt={game.nome} />
+            <h3>{game.nome}</h3>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal */}
+      {selectedGame && (
+        <div className="modal-overlay" onClick={() => setSelectedGame(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <h2>{selectedGame.nome}</h2>
+            <p>{selectedGame.descricao}</p>
+
+            <div className="requisitos">
+              <h4>Requisitos mínimos</h4>
+              <p>{selectedGame.requisitos.minimo}</p>
+
+              <h4>Requisitos recomendados</h4>
+              <p>{selectedGame.requisitos.recomendado}</p>
+            </div>
+
+            <button onClick={() => setSelectedGame(null)}>Fechar</button>
+          </div>
+        </div>
+      )}
+  </div>
     </div>
   );
 }

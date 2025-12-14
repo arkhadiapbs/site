@@ -1,105 +1,209 @@
-/* Container geral */
 .comu-container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  padding-top: 150px; /* empurra o conteúdo pra baixo */
-  color: white;
+  max-width: 800px; /* pode testar 700–900 */
+  margin: 0 auto;
+  padding: 0 20px; /* respiro lateral no mobile */
+  padding-top: 90px; /* ajusta conforme a altura do teu header */
 }
 
-/* Card Dark */
-.post-card,
-.create-card,
-.postPage-card,
-.comments-card {
-  background: #1d1d1d;
+/* ===== HEADER DA COMUNIDADE ===== */
+.com-header {
+  margin-top: 20px;          /* distância do topo da página */
+  padding: 40px 16px 24px;
+  text-align: left;
+}
+
+.com-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.title-highlight {
+  color: #7c3aed; /* roxinho gamer */
+}
+
+.title-small {
+  color: #e5e7eb;
+  font-weight: 600;
+}
+
+.com-subtitle {
+  font-size: 1rem;
+  color: #9ca3af;
+  max-width: 520px;
+  
+}
+
+/* ===== LOGIN CTA ===== */
+
+.login-cta {
+  background: linear-gradient(180deg, #111218, #0b0d10);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 40px 30px;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.login-cta p {
+  font-size: 1.1rem;
+  color: #cfcfcf;
+  margin-bottom: 20px;
+}
+
+.login-cta button {
+  background: #1e88ff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ===== POST ESTILO REDE SOCIAL GAMER ===== */
+
+.post-card {
+  background: linear-gradient(180deg, #0f1115, #0b0d10);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
   padding: 18px;
   margin-bottom: 20px;
-  border-radius: 14px;
-  box-shadow: 0 0 12px #00000055;
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post-card:hover {
-  transform: scale(1.01);
-  background: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Criar Post */
-.create-card input,
-.create-card textarea {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  background: #2c2c2c;
-  border: none;
-  border-radius: 10px;
-  color: white;
-}
-
-.create-card button {
-  margin-top: 12px;
-  padding: 10px 14px;
-  background: #5b5bff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-}
-
-/* Post feed */
+/* Header do post */
 .post-author {
-  font-size: 0.9rem;
-  color: #bbbbbb;
-}
-
-.post-text {
-  margin-top: 6px;
-}
-
-/* Página do post */
-.postPage-container {
-  max-width: 800px;
-  margin: 20px auto;
-  color: white;
-}
-
-.postPage-author {
-  display: block;
-  margin-top: 10px;
-  color: #bbbbbb;
-}
-
-/* Comentários */
-.comment-input {
   display: flex;
+  align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
+  font-size: 14px;
+  color: #cfcfcf;
 }
 
-.comment-input input {
-  flex: 1;
-  background: #2c2c2c;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  color: white;
+.post-author::before {
+  content: attr(data-avatar);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #60a5fa;
 }
 
-.comment-input button {
-  background: #5b5bff;
+/* Texto */
+.post-text {
+  margin: 12px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e5e7eb;
+}
+
+/* Imagem do post */
+.post-image {
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+/* Ações */
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.like-btn {
+  background: none;
   border: none;
-  padding: 10px 14px;
-  border-radius: 10px;
-  color: white;
+  color: #9ca3af;
+  font-size: 14px;
   cursor: pointer;
+  transition: transform 0.1s ease, color 0.1s ease;
 }
 
-.comment-item {
-  background: #2c2c2c;
-  padding: 12px;
-  border-radius: 10px;
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+.like-btn.liked {
+  color: #f43f5e;
+}
+
+.comment-count {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.like-btn,
+.comment-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.like-btn:hover,
+.comment-btn:hover {
+  transform: scale(1.1);
+  color: #60a5fa;
+}
+
+.like-btn.liked {
+  color: #f43f5e;
+}
+
+/* COMENTÁRIOS */
+
+.comments-section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.comment {
   margin-bottom: 10px;
+}
+
+.comment strong {
+  color: #60a5fa;
+  font-size: 13px;
+}
+
+.comment p {
+  font-size: 14px;
+  color: #e5e7eb;
+  margin-left: 6px;
+}
+
+.no-comments {
+  font-size: 13px;
+  color: #9ca3af;
 }
