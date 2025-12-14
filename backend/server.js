@@ -25,7 +25,7 @@ mongoose.connect("mongodb+srv://arkhadia168_db_user:safu54e0ahDeMh02@arkhadia.tc
 // Rotas da API
 app.use("/api/games", games);
 app.use("/api/auth", auth);
-app.use("/api/posts", posts);  // <= ADICIONE ESTA LINHA
+app.use("/api/posts", posts);  
 app.use("/api/comments", comments);
 
 // Página 404 (agora só em JSON)

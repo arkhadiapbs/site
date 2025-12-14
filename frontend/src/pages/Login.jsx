@@ -4,6 +4,7 @@ import "./Login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [erroEmail, setErroEmail] = useState("");
 
   function validarEmail(email) {
@@ -11,43 +12,43 @@ export default function Login() {
     return regex.test(email);
   }
 
-async function handleSubmit(e) {
-  e.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-  if (!validarEmail(email)) {
-    setErroEmail("Digite um e-mail válido.");
-    return;
-  }
-
-  try {
-    const response = await fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      alert(data.message || "Erro no login");
+    if (!validarEmail(email)) {
+      setErroEmail("Digite um e-mail válido.");
       return;
     }
 
-    // ✅ SALVA O USUÁRIO NO LOCALSTORAGE
-    localStorage.setItem("user", JSON.stringify(data.user));
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, senha }),
+      });
 
-    console.log("Usuário logado:", data.user);
+      const data = await response.json();
 
-    // ✅ REDIRECIONA PRA COMUNIDADE
-    window.location.href = "/Comunidade";
+      if (!response.ok) {
+        alert(data.message || "Erro no login");
+        return;
+      }
 
-  } catch (error) {
-    console.error("Erro no login:", error);
-    alert("Erro ao conectar com o servidor");
+      // Salva o usuário no localStorage
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      console.log("Usuário logado:", data.user);
+
+      // Redireciona para a comunidade
+      window.location.href = "/Comunidade";
+
+    } catch (error) {
+      console.error("Erro no login:", error);
+      alert("Erro ao conectar com o servidor");
+    }
   }
-}
 
   return (
     <div className="login-container">
@@ -66,8 +67,8 @@ async function handleSubmit(e) {
           <h1 className="login-title">ENTRAR</h1>
 
           <form className="login-form" onSubmit={handleSubmit} noValidate>
-            
-            {/* CAMPO DE E-MAIL */}
+
+            {/* E-MAIL */}
             <div className="mb-3">
               <input
                 type="email"
@@ -88,7 +89,9 @@ async function handleSubmit(e) {
               <input 
                 type="password" 
                 className="form-control" 
-                placeholder="Senha" 
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
               />
             </div>
 

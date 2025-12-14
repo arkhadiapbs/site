@@ -18,34 +18,37 @@ export default function Comunidade() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
-    async function carregarFeed() {
-      try {
-        const response = await api.get("/api/posts/feed");
-        setPosts(response.data);
-      } catch (err) {
-        console.error("Erro ao carregar feed:", err);
-      }
+useEffect(() => {
+  async function carregarFeed() {
+    try {
+      const response = await api.get("/api/posts/feed");
+      setPosts(response.data);
+    } catch (err) {
+      console.error("Erro ao carregar feed:", err);
     }
+  }
 
-    carregarFeed();
-  }, []);
+  carregarFeed();
+}, []);
 
-  async function criarPost() {
+   async function criarPost() {
     if (!novoTexto.trim()) return;
+
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user?._id) {
       alert("Você precisa estar logado pra postar!");
       return;
     }
 
-    try {
-      const response = await api.post("/api/posts", {
-        texto: novoTexto,
-        userId: user._id,
-      });
+    const payload = {
+      texto: novoTexto,
+      userId: user._id,
+    };
 
-      setPosts((prev) => [response.data, ...prev]);
+    try {
+      const response = await api.post("/api/posts", payload);
+      setPosts([response.data, ...posts]);
       setNovoTexto("");
     } catch (err) {
       console.error("Erro ao criar post:", err);
@@ -86,6 +89,7 @@ export default function Comunidade() {
         <div className="login-cta">
           <p>Faça login para criar postagens e interagir com a comunidade</p>
           <button onClick={() => navigate("/login")}>Entrar</button>
+ 
         </div>
       )}
 

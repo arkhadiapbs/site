@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import das páginas
@@ -15,15 +14,7 @@ import Layout from "./components/Layout";
 import "./styles.css";
 
 function App() {
-  const [mensagem, setMensagem] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/mensagem")
-      .then((res) => res.json())
-      .then((data) => setMensagem(data.texto))
-      .catch((err) => console.error("Erro ao buscar API:", err));
-  }, []);
-
+  
   return (
     <Router>
       <Routes>
@@ -32,7 +23,7 @@ function App() {
           path="/"
           element={
             <Layout>
-              <Home mensagem={mensagem} /> {/* Passa a mensagem pro Home */}
+              <Home /> 
             </Layout>
           }
         />
