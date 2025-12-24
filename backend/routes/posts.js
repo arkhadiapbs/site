@@ -51,7 +51,7 @@ router.put("/:id/:userId", async (req, res) => {
   }
 });
 
-
+//rota delete
 router.delete("/:id/:userId", async (req, res) => {
   try {
     const { id, userId } = req.params;
@@ -68,6 +68,43 @@ router.delete("/:id/:userId", async (req, res) => {
     res.json({ message: "Post deletado" });
   } catch (error) {
     res.status(500).json({ error: "Erro ao deletar post" });
+  }
+});
+
+//rota para curtir post
+router.post("/:id/like", async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const postId = req.params.id;
+
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ error: "Post não encontrado" });
+    }
+
+    const jaCurtiu = post.likes.some(
+      (id) => id.toString() === userId
+    );
+
+    if (jaCurtiu) {
+      post.likes = post.likes.filter(
+        (id) => id.toString() !== userId
+      );
+    } else {
+      post.likes.push(userId);
+    }
+
+    await post.save();
+
+    // 🔥 BUSCA DE NOVO COM POPULATE
+    const postAtualizado = await Post.findById(postId)
+      .populate("userId", "nome email");
+
+    res.json(postAtualizado);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao curtir post" });
   }
 });
 
