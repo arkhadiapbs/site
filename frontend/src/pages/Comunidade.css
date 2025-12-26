@@ -65,6 +65,98 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* ===== CRIAR POST ===== */
+
+.create-card {
+  background: linear-gradient(180deg, #0f1115, #0b0d10);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+}
+
+.create-card h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.create-card textarea {
+  width: 100%;
+  min-height: 90px;
+  resize: none;
+  background: #0b0d10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #e5e7eb;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-card textarea::placeholder {
+  color: #6b7280;
+}
+
+.create-card textarea:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.15);
+}
+
+/* ===== FOOTER DO CRIAR POST ===== */
+
+.create-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.char-count {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* quando estiver quase no limite */
+.char-count.warning {
+  color: #f0c106;
+}
+
+/* quando estourar (caso mude o max depois) */
+.char-count.danger {
+  color: #f43f5e;
+}
+
+/* botão estilo twitter */
+.create-footer button {
+  margin-top: 12px;
+  background: #1e88ff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.create-footer button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+.create-footer button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 /* ===== POST ESTILO REDE SOCIAL GAMER ===== */
 
 .post-card {
@@ -83,25 +175,42 @@
 }
 
 /* Header do post */
-.post-author {
+.post-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: #cfcfcf;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
-.post-author::before {
-  content: attr(data-avatar);
-  width: 36px;
-  height: 36px;
+.post-avatar {
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
-  background: #1f2937;
+  background: #7c7cff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  color: #60a5fa;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.post-author-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.post-user {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #7c7cff;
+}
+
+.post-time {
+  font-size: 0.75rem;
+  color: #a1a1aa;
 }
 
 /* Texto */
@@ -183,27 +292,100 @@
 /* COMENTÁRIOS */
 
 .comments-section {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .comment {
+  display: flex;
+  gap: 12px;
+  background: #1f1f23;
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #e4e4e7;
+}
+
+.comment-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #7c7cff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.comment-user {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #7c7cff;
+}
+
+.comment-time {
+  font-size: 0.75rem;
+  color: #a1a1aa;
+}
+
+.comment-text {
+  font-size: 0.9rem;
+  color: #d4d4d8;
+  margin: 0;
+}
+
+.comment-input {
+  display: flex;
+  gap: 8px;
   margin-bottom: 10px;
 }
 
-.comment strong {
-  color: #60a5fa;
-  font-size: 13px;
+.comment-input input {
+  flex: 1;
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #e4e4e7;
+  font-size: 0.9rem;
+  outline: none;
 }
 
-.comment p {
-  font-size: 14px;
-  color: #e5e7eb;
-  margin-left: 6px;
+.comment-input input::placeholder {
+  color: #71717a;
+}
+
+.comment-input button {
+  background: #1e88ff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 14px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.comment-input button:hover {
+  background: #6366f1;
 }
 
 .no-comments {
-  font-size: 13px;
-  color: #9ca3af;
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  text-align: center;
 }
