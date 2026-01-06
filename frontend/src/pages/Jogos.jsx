@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { FiSearch, FiChevronDown } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import "./Jogos.css";
 
@@ -58,22 +58,15 @@ export default function Jogos() {
             />
           </div>
 
-          <div
-            className="filtro"
-            onClick={() => filtroRef.current?.focus()}
-          >
-            <select
-              ref={filtroRef}
-              value={genero}
-              onChange={e => setGenero(e.target.value)}
-            >
+          <div className="filtro">
+            <select ref={filtroRef} value={genero} onChange={e => setGenero(e.target.value)}>
               <option value="Todos">Todos os Gêneros</option>
               <option value="RPG">RPG</option>
-              <option value="Action RPG">Action RPG</option>
+              <option value="Ação / Mundo Aberto">Ação / Mundo Aberto</option>
               <option value="Action-Adventure">Action-Adventure</option>
-              <option value="FPS">FPS</option>
+              <option value="FPS Tático">FPS Tático</option>
+              <option value="Survival Horror">Survival Horror</option>
             </select>
-            <FiChevronDown className="filtro-icon" />
           </div>
 
           <div className="filtro">
@@ -88,7 +81,6 @@ export default function Jogos() {
               <option value="Xbox">Xbox</option>
               <option value="Switch">Switch</option>
             </select>
-            <FiChevronDown className="filtro-icon" />
           </div>
         </div>
 

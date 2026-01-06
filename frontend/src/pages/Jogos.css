@@ -43,25 +43,23 @@
   display: flex;
   align-items: center;
   gap: 6px;
-
   background: #0f0f14;
   padding: 10px 14px;
   border-radius: 15px;
-
   border: 1px solid rgba(255, 255, 255, 0.06);
   cursor: pointer;
 }
 
-.filtro select {
-  appearance: none;
+.filters select {
   background: transparent;
   border: none;
-  outline: none;
-
-  color: #d1d5db;
-  font-size: 14px;
+  color: #9ca3af;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 10px 14px;
   cursor: pointer;
 }
+
 
 .filtro-icon {
   color: #9ca3af;
@@ -69,8 +67,9 @@
 }
 
 .contador {
-  margin: 12px 0;
+  margin: 15px 0;
   opacity: .7;
+  font-size: 0.8rem;
 }
 
 .jogos-grid {
