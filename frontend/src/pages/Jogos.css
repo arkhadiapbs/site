@@ -42,22 +42,31 @@
 .filtro {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: #0f0f14;
+  background-color: #0f0f14;
   padding: 10px 14px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  cursor: pointer;
 }
 
-.filters select {
-  background: transparent;
-  border: none;
+.filtro select {
+  background-color: transparent;
   color: #9ca3af;
-  appearance: none;
-  -webkit-appearance: none;
-  padding: 10px 14px;
+  border: none;
+  outline: none;
+  font-size: 14px;
   cursor: pointer;
+  width: 100%;
+}
+
+/* ISSO AQUI é o pulo do gato 🐱 */
+.filtro select:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.filtro option {
+  background-color: #0f0f14;
+  color: #e5e7eb;
 }
 
 

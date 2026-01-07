@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 import "./Jogos.css";
@@ -9,7 +9,6 @@ export default function Jogos() {
   const [genero, setGenero] = useState("Todos");
   const [plataforma, setPlataforma] = useState("Todas");
   const [selectedGame, setSelectedGame] = useState(null);
-  const filtroRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -59,7 +58,7 @@ export default function Jogos() {
           </div>
 
           <div className="filtro">
-            <select ref={filtroRef} value={genero} onChange={e => setGenero(e.target.value)}>
+            <select value={genero} onChange={e => setGenero(e.target.value)}>
               <option value="Todos">Todos os Gêneros</option>
               <option value="RPG">RPG</option>
               <option value="Ação / Mundo Aberto">Ação / Mundo Aberto</option>
@@ -68,6 +67,7 @@ export default function Jogos() {
               <option value="Survival Horror">Survival Horror</option>
             </select>
           </div>
+
 
           <div className="filtro">
             <select
