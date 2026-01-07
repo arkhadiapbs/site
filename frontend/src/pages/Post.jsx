@@ -14,6 +14,7 @@ export default function PostPage() {
     api.get(`/posts/${id}`).then((res) => setPost(res.data));
     api.get(`/api/comments/${id}`).then((res) => setComments(res.data));
   }, [id]);
+  
 
   async function enviarComentario() {
     if (!newComment.trim()) return;
