@@ -189,7 +189,7 @@ export default function Jogos() {
                 <div className="game-cover">
                   <img
                     src={
-                      selectedGame.capa ||
+                      selectedGame.imagem ||
                       "https://via.placeholder.com/400x600?text=Game+Cover"
                     }
                     alt={selectedGame.titulo}

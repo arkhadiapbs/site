@@ -12,12 +12,18 @@ const gameSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    
+    imagem: {
+      type: String, // URL da imagem
+      required: true,
+    },
 
     informacoes: {
       genero: {
         type: String,
         required: true,
       },
+      
 
       plataforma: [
         {
