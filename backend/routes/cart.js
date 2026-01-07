@@ -1,65 +1,42 @@
 const express = require("express");
 const router = express.Router();
 const Cart = require("../models/cart");
-const Product = require("../models/Product");
 
-// Ver carrinho do usuário
-router.get("/:userId", async (req, res) => {
-  const cart = await Cart.findOne({ userId: req.params.userId });
-  res.json(cart || { items: [] });
-});
-
-// Adicionar produto ao carrinho
+// ➕ ADICIONAR AO CARRINHO
 router.post("/add", async (req, res) => {
-  const { userId, productId } = req.body;
+  try {
+    const { userId, productId } = req.body;
 
-  const product = await Product.findById(productId);
-  if (!product) return res.status(404).json({ message: "Produto não encontrado" });
+    if (!userId || !productId) {
+      return res.status(400).json({ message: "Dados inválidos" });
+    }
 
-  let cart = await Cart.findOne({ userId });
+    let cart = await Cart.findOne({ user: userId });
 
-  if (!cart) {
-    cart = new Cart({ userId, items: [] });
+    if (!cart) {
+      cart = await Cart.create({
+        user: userId,
+        items: [{ product: productId, quantidade: 1 }],
+      });
+    } else {
+      const itemIndex = cart.items.findIndex(
+        item => item.product.toString() === productId
+      );
+
+      if (itemIndex >= 0) {
+        cart.items[itemIndex].quantidade += 1;
+      } else {
+        cart.items.push({ product: productId, quantidade: 1 });
+      }
+
+      await cart.save();
+    }
+
+    res.status(200).json({ message: "Produto adicionado ao carrinho" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro ao adicionar ao carrinho" });
   }
-
-  const itemIndex = cart.items.findIndex(
-    item => item.productId.toString() === productId
-  );
-
-  if (itemIndex > -1) {
-    cart.items[itemIndex].quantidade += 1;
-  } else {
-    cart.items.push({
-      productId,
-      nome: product.nome,
-      preco: product.preco,
-      imagem: product.imagem
-    });
-  }
-
-  await cart.save();
-  res.json(cart);
-});
-
-// Remover produto
-router.delete("/remove", async (req, res) => {
-  const { userId, productId } = req.body;
-
-  const cart = await Cart.findOne({ userId });
-  if (!cart) return res.json({ items: [] });
-
-  cart.items = cart.items.filter(
-    item => item.productId.toString() !== productId
-  );
-
-  await cart.save();
-  res.json(cart);
-});
-
-// Limpar carrinho
-router.delete("/clear/:userId", async (req, res) => {
-  await Cart.findOneAndDelete({ userId: req.params.userId });
-  res.json({ message: "Carrinho limpo" });
 });
 
 module.exports = router;

@@ -1,40 +1,50 @@
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { FiSearch, FiFilter } from "react-icons/fi";
 import "./Marketplace.css";
 
-const produtosMock = [
-  {
-    id: 1,
-    nome: "Teclado Mecânico RGB",
-    categoria: "Teclado",
-    marca: "Redragon",
-    preco: 299.9,
-    imagem: "https://via.placeholder.com/400x300?text=Teclado+RGB",
-  },
-  {
-    id: 2,
-    nome: "Mouse Gamer RGB",
-    categoria: "Mouse",
-    marca: "Logitech",
-    preco: 199.9,
-    imagem: "https://via.placeholder.com/400x300?text=Mouse+Gamer",
-  },
-  {
-    id: 3,
-    nome: "Headset Gamer",
-    categoria: "Headset",
-    marca: "HyperX",
-    preco: 399.9,
-    imagem: "https://via.placeholder.com/400x300?text=Headset",
-  },
-];
-
 export default function Marketplace() {
+  const [produtos, setProdutos] = useState([]);
   const [search, setSearch] = useState("");
   const [categoria, setCategoria] = useState("Todas");
   const [marca, setMarca] = useState("Todas");
+  const [loading, setLoading] = useState(true);
 
-  const produtosFiltrados = produtosMock.filter(prod => {
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/products")
+      .then(res => {
+        console.log("Produtos recebidos:", res.data.produtos);
+        setProdutos(res.data.produtos);
+      })
+      .catch(err => {
+        console.error("Erro ao buscar produtos:", err);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const adicionarAoCarrinho = async (productId) => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+      alert("Você precisa estar logado");
+      return;
+    }
+
+    await axios.post("http://localhost:5000/api/cart/add", {
+      userId: user._id,
+      productId,
+    });
+
+    alert("Produto adicionado ao carrinho!");
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao adicionar ao carrinho");
+  }
+};
+
+  const produtosFiltrados = produtos.filter(prod => {
     const matchNome = prod.nome.toLowerCase().includes(search.toLowerCase());
     const matchCategoria =
       categoria === "Todas" || prod.categoria === categoria;
@@ -43,6 +53,10 @@ export default function Marketplace() {
     return matchNome && matchCategoria && matchMarca;
   });
 
+  if (loading) {
+    return <p style={{ padding: 20 }}>Carregando produtos...</p>;
+  }
+
   return (
     <div className="marketplace-container">
       {/* HEADER */}
@@ -50,9 +64,7 @@ export default function Marketplace() {
         <h1>
           Mercado <span>Gamer</span>
         </h1>
-        <p>
-          Encontre os melhores periféricos e equipamentos para seu setup
-        </p>
+        <p>Encontre os melhores periféricos e equipamentos para seu setup</p>
 
         {/* BUSCA */}
         <div className="search-bar">
@@ -92,7 +104,7 @@ export default function Marketplace() {
       {/* GRID */}
       <div className="products-grid">
         {produtosFiltrados.map(prod => (
-          <div key={prod.id} className="product-card">
+          <div key={prod._id} className="product-card">
             <img src={prod.imagem} alt={prod.nome} />
 
             <div className="product-info">
@@ -100,7 +112,10 @@ export default function Marketplace() {
               <span className="marca">{prod.marca}</span>
               <strong>R$ {prod.preco.toFixed(2)}</strong>
 
-              <button>Ver produto</button>
+              <button onClick={() => adicionarAoCarrinho(prod._id)}>
+  Adicionar ao carrinho
+</button>
+
             </div>
           </div>
         ))}
