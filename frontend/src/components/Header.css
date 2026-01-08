@@ -119,3 +119,35 @@ nav a:hover::after {
   margin: 0;
   line-height: 1;
 }
+
+.logout-link {
+  color: #fff;
+  font-weight: 450;
+  font-size: 15px;
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  transition: color 0.3s ease, font-size 0.3s ease;
+  text-decoration: none;
+}
+
+.logout-link::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #6352ff;
+  transition: width 0.3s ease;
+}
+
+.logout-link:hover {
+  color: #6352ff;
+}
+
+.logout-link:hover::after {
+  width: 100%;
+}

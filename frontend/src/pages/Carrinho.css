@@ -3,60 +3,124 @@
   background: #0f0f14;
   color: #ffffff;
   padding: 40px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-voltar {
+  background: none;
+  border: none;
+  outline: none; /* adiciona isso pra remover a borda do foco */
+  color: #7c5cff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.btn-voltar:hover {
+  color: #6352ff;
+  border: none;
+  outline: none; /* opcional, só pra garantir */
 }
 
 .carrinho-title {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   margin-bottom: 30px;
   color: #7c5cff;
 }
 
 .carrinho-vazio {
-  font-size: 1.2rem;
-  opacity: 0.8;
+  font-size: 1.3rem;
+  opacity: 0.7;
+  text-align: center;
+  margin-top: 50px;
+  font-style: italic;
 }
 
 .carrinho-lista {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
+  margin-bottom: 30px;
 }
 
 .carrinho-item {
   background: #1a1a24;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 15px;
+  padding: 20px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carrinho-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
 }
 
 .carrinho-info p {
   margin: 4px 0;
+  font-size: 1rem;
+  color: #d1d1d1;
 }
 
 .carrinho-info strong {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  color: #ffffff;
 }
 
 .carrinho-preco {
   color: #00ffae;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .carrinho-actions button {
-  background: #ff4d4d;
+  background: linear-gradient(135deg, #ff4d4d, #ff2e2e);
   border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
   color: white;
   cursor: pointer;
   font-weight: 600;
-  transition: 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
 }
 
 .carrinho-actions button:hover {
-  background: #ff2e2e;
+  background: linear-gradient(135deg, #ff2e2e, #ff0000);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(255, 46, 46, 0.5);
+}
+
+.carrinho-total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  margin-bottom: 30px;
+  color: #7c5cff;
+}
+
+.btn-comprar {
+  background: #7c5cff;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background 0.3s, transform 0.2s;
+  display: block;
+  margin-left: auto;
+}
+
+.btn-comprar:hover {
+  background: #6352ff;
   transform: scale(1.05);
 }
