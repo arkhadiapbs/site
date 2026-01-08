@@ -1,0 +1,62 @@
+.carrinho-page {
+  min-height: 100vh;
+  background: #0f0f14;
+  color: #ffffff;
+  padding: 40px;
+}
+
+.carrinho-title {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #7c5cff;
+}
+
+.carrinho-vazio {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.carrinho-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.carrinho-item {
+  background: #1a1a24;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.carrinho-info p {
+  margin: 4px 0;
+}
+
+.carrinho-info strong {
+  font-size: 1.1rem;
+}
+
+.carrinho-preco {
+  color: #00ffae;
+  font-weight: bold;
+}
+
+.carrinho-actions button {
+  background: #ff4d4d;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.carrinho-actions button:hover {
+  background: #ff2e2e;
+  transform: scale(1.05);
+}

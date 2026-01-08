@@ -58,7 +58,6 @@
   width: 100%;
 }
 
-/* ISSO AQUI é o pulo do gato 🐱 */
 .filtro select:focus {
   background-color: transparent;
   box-shadow: none;

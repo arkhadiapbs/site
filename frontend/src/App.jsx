@@ -7,6 +7,7 @@ import Marketplace from "./pages/Marketplace";
 import Comunidade from "./pages/Comunidade";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Carrinho from "./pages/Carrinho";
 
 // Import do Layout (Header + Footer)
 import Layout from "./components/Layout";
@@ -58,6 +59,7 @@ function App() {
         {/* 🔹 Páginas SEM Header e Footer */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/carrinho" element={<Carrinho />} />
       </Routes>
     </Router>
   );
